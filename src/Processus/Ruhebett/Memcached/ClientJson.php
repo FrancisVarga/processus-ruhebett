@@ -1,6 +1,6 @@
 <?php
 
-namespace Processus\Memcached;
+namespace Processus\Ruhebett\Memcached;
 class ClientJson extends Client
 {
     /**

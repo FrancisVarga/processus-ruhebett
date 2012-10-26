@@ -6,7 +6,7 @@
  * Time: 8:07 PM
  * To change this template use File | Settings | File Templates.
  */
-namespace Processus\Couchbase;
+namespace Processus\Ruhebett\Couchbase;
 class Client extends \Processus\Memcached\ClientJson
 {
     /**

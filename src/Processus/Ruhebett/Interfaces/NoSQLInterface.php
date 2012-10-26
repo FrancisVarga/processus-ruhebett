@@ -1,6 +1,6 @@
 <?php
 
-namespace Processus\Interfaces;
+namespace Processus\Ruhebett\Interfaces;
 interface NoSQLInterface
 {
 
