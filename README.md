@@ -92,7 +92,7 @@ interface NoSQLInterface
 
 ###Examples
 
-[couchbasesdk](processus-ruhebett/examples/couchbaseSdk.php)
-[memcachedRaw](processus-ruhebett/examples/memcachedRaw.php)
-[memcachedJson](processus-ruhebett/examples/memcachedJson.php)
-[benchmark](processus-ruhebett/examples/benchmark.php)
+[couchbasesdk test](processus-ruhebett/examples/couchbaseSdk.php)  
+[memcachedRaw test](processus-ruhebett/examples/memcachedRaw.php)  
+[memcachedJson test](processus-ruhebett/examples/memcachedJson.php)  
+[benchmark](processus-ruhebett/examples/benchmark.php)  
