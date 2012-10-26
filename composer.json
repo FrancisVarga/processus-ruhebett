@@ -1,10 +1,13 @@
 {
     "name":"processus/ruhebett",
-    "type":"framework",
+    "type":"library",
     "description":"Talking with Couchbase",
-    "keywords":["library", "couchbase", "memcached"],
+    "keywords":["library", "couchbase", "memcached", "nosql"],
     "homepage":"http://github.com/Crowdpark/processus-ruhebett",
     "license":"MIT",
+    "support": {
+        "issues": "https://github.com/Crowdpark/processus-ruhebett/issues"
+    },
     "authors":[
         {
             "name":"Francis Varga",
@@ -15,7 +18,7 @@
     ],
     "autoload":{
         "psr-0":{
-            "Processus\\":"src/"
+            "Processus":"src"
         }
     },
     "require":{
