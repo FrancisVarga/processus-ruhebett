@@ -1,7 +1,7 @@
 processus-ruhebett
 ===================
 
-ruhebett = chillout bed;
+german -> ruhebett = chillout bed;
 
 [Couchbase](http://www.couchbase.com) client which use [Couchbase SDK](http://www.couchbase.com/develop/php/next) or / and [Memcached](http://php.net/manual/en/book.memcached.php).
 
