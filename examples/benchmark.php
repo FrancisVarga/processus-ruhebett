@@ -93,7 +93,7 @@ $durationMemRaw = $endMemRaw - $startMemRaw;
 $endTotalTime = microtime(true);
 $durationTotal = $endTotalTime - $startTotalTime;
 echo "====================================================" . PHP_EOL;
-echo "CouchSdk:         " . $durationCouchSdk  . "      //  " . $durationCouchSdk   / $totalIteration .   " item/sec.   => " . $totalIteration . PHP_EOL;
+echo "CouchbaseSdk:     " . $durationCouchSdk  . "      //  " . $durationCouchSdk   / $totalIteration .   " item/sec.   => " . $totalIteration . PHP_EOL;
 echo "Memcached Raw:    " . $durationMemRaw    . "      //  " . $durationMemRaw     / $totalIteration   .   " item/sec. => " . $totalIteration . PHP_EOL;
 echo "Memcached Json:   " . $durationMemJson   . "      //  " . $durationMemJson    / $totalIteration  .   " item/sec.  => " . $totalIteration . PHP_EOL;
 echo "====================================================" . PHP_EOL;
