@@ -1,0 +1,25 @@
+{
+    "name":"processus/ruhebett",
+    "type":"framework",
+    "description":"Talking with Couchbase",
+    "keywords":["library", "couchbase", "memcached"],
+    "homepage":"http://github.com/Crowdpark/processus-ruhebett",
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Francis Varga",
+            "email":"fv@crowdpark.com",
+            "homepage":"http://www.crowdpark.com",
+            "role":"Developer"
+        }
+    ],
+    "autoload":{
+        "psr-0":{
+            "Processus\\":"src/"
+        }
+    },
+    "require":{
+        "php":">=5.3.3"
+    },
+    "minimum-stability":"dev"
+}

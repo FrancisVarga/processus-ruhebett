@@ -1,12 +1,6 @@
-processus-ruhebett
-===================
+<?php
 
-couchbase wrapper with support couchbase sdk and memcached
-
-
-###API
-
-```php
+namespace Processus\Interfaces;
 interface NoSQLInterface
 {
 
@@ -88,11 +82,3 @@ interface NoSQLInterface
 }
 
 ?>
-```
-
-###Examples
-
-[couchbasesdk](examples/couchbaseSdk.php)
-[memcachedRaw](examples/memcachedRaw.php)
-[memcachedJson](examples/memcachedJson.php)
-[benchmark](examples/benchmark.php)  
