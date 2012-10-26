@@ -8,11 +8,13 @@ german -> ruhebett = chillout bed;
 
 ###Requirements
 
-Couchbase Server: [Download](www.couchbase.com/downloads-all)
-libcouchbase: [Download](http://www.couchbase.com/develop/c/next)
-CouchbasSDK: [Download](http://www.couchbase.com/develop/php/next)  
+Couchbase Server: [Download](www.couchbase.com/downloads-all)  
+libcouchbase:     [Download](http://www.couchbase.com/develop/c/next)  
+CouchbasSDK:      [Download](http://www.couchbase.com/develop/php/next)    
 
 ###API
+
+All clients use the same **Interface** so you can chage the client without any problems.
 
 ```php
 interface NoSQLInterface
@@ -100,10 +102,14 @@ interface NoSQLInterface
 
 ###Examples
 
-[couchbasesdk](processus-ruhebett/examples/couchbaseSdk.php)
-[memcachedRaw](processus-ruhebett/examples/memcachedRaw.php)
-[memcachedJson](processus-ruhebett/examples/memcachedJson.php)
-[benchmark](processus-ruhebett/examples/benchmark.php)
+[couchbasesdk](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/couchbaseSdk.php)    
+[memcachedRaw](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedRaw.php)    
+[memcachedJson](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedJson.php)    
+[benchmark](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/benchmark.php)    
+
+###ToDo
+
+- writing test
 
 ###License
 
