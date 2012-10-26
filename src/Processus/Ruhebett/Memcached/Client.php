@@ -38,6 +38,26 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     }
 
     /**
+     * @param $key
+     * @param int $offset
+     * @return int
+     */
+    public function increment($key, $offset = 1)
+    {
+        return $this->getMemDCli()->increment($key, $offset);
+    }
+
+    /**
+     * @param $key
+     * @param int $offset
+     * @return int
+     */
+    public function decrement($key, $offset = 1)
+    {
+        return $this->getMemDCli()->decrement($key, $offset);
+    }
+
+    /**
      * @return \Memcached
      */
     public function getMemDCli()

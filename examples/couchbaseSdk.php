@@ -35,6 +35,15 @@ $cb->update($key, $data, $expired);                 // update data, you can also
 $data = $cb->fetch($key);                           // fetch data again with the update key
 var_dump($data);
 
+$autoIncKey = $key . ":autoinc";
+if($cb->getMemDCli()->get($autoIncKey) == null)
+{
+    $cb->getMemDCli()->set($autoIncKey, 0, 0);
+}
+
+$inc = $cb->increment($autoIncKey, 1);
+var_dump($inc);
+
 $end = microtime(true);
 $duration = $end - $start;
 echo "Duration: " . $duration . PHP_EOL;
