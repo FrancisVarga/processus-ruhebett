@@ -14,6 +14,8 @@ CouchbasSDK: [Download](http://www.couchbase.com/develop/php/next)
 
 ###API
 
+All clients use the same **Interface** so you can chage the client without any problems.
+
 ```php
 interface NoSQLInterface
 {
@@ -100,10 +102,10 @@ interface NoSQLInterface
 
 ###Examples
 
-[couchbasesdk](https://github.com/Crowdpark/processus-ruhebett/blob/master/processus-ruhebett/examples/couchbaseSdk.php)  
-[memcachedRaw](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedRaw.php)  
-[memcachedJson](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedJson.php)  
-[benchmark](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/benchmark.php)  
+[couchbasesdk](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/couchbaseSdk.php)    
+[memcachedRaw](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedRaw.php)    
+[memcachedJson](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedJson.php)    
+[benchmark](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/benchmark.php)    
 
 ###License
 
