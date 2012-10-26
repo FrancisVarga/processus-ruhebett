@@ -8,9 +8,9 @@ german -> ruhebett = chillout bed;
 
 ###Requirements
 
-Couchbase Server: [Download](www.couchbase.com/downloads-all)
-libcouchbase: [Download](http://www.couchbase.com/develop/c/next)
-CouchbasSDK: [Download](http://www.couchbase.com/develop/php/next)  
+Couchbase Server: [Download](www.couchbase.com/downloads-all)  
+libcouchbase:     [Download](http://www.couchbase.com/develop/c/next)  
+CouchbasSDK:      [Download](http://www.couchbase.com/develop/php/next)    
 
 ###API
 
