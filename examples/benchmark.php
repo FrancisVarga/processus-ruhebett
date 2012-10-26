@@ -7,13 +7,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require __DIR__ . "/../src/Processus/Interfaces/NoSQLInterface.php";
-require __DIR__ . "/../src/Processus/Memcached/Client.php";
-require __DIR__ . "/../src/Processus/Memcached/ClientJson.php";
-require __DIR__ . "/../src/Processus/Couchbase/Client.php";
+require __DIR__ . "/../vendor/autoload.php";
 
 $startTotalTime = microtime(true);
-$totalIteration = 1;
+$totalIteration = 10000;
 
 $rawData = array(
     "firstname" => "Francis",
@@ -30,21 +27,21 @@ $rawData = array(
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Starting CouchbaseSDK
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-$couchbaseSDK  = new \Processus\Couchbase\Client();
-$couchbaseSDK->setBucket("test")
+$couchbaseSDK = new \Processus\Ruhebett\Couchbase\Client();
+$couchbaseSDK->setHost("192.168.42.18");
+$couchbaseSDK->setBucket("default")
     ->setUsername("Administrator")
     ->setPassword("Administrator")
     ->setPort("8091")
     ->initClient();
 
 $startCouchSdk = microtime(true);
-for($i = 0; $i <= $totalIteration; $i++)
-{
+for ($i = 0; $i <= $totalIteration; $i++) {
     $key = "couch:" . $i;
     $couchbaseSDK->insert($key, $rawData, 0);
     $couchbaseSDK->fetch($key);
 }
-$endCouchSdk = microtime(true);
+$endCouchSdk      = microtime(true);
 $durationCouchSdk = $endCouchSdk - $startCouchSdk;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // End CouchbaseSDK
@@ -53,18 +50,18 @@ $durationCouchSdk = $endCouchSdk - $startCouchSdk;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Starting MemcachedJson
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-$memcachedJson = new \Processus\Memcached\ClientJson();
-$memcachedJson->setPort("11711")
-              ->initClient();
+$memcachedJson = new \Processus\Ruhebett\Memcached\ClientJson();
+$memcachedJson->setHost("192.168.42.18");
+$memcachedJson->setPort("11211")
+    ->initClient();
 
 $startMemJson = microtime(true);
-for($i = 0; $i <= $totalIteration; $i++)
-{
+for ($i = 0; $i <= $totalIteration; $i++) {
     $key = "memjson:" . $i;
     $memcachedJson->insert($key, $rawData, 0);
     $memcachedJson->fetch($key);
 }
-$endMemJson = microtime(true);
+$endMemJson      = microtime(true);
 $durationMemJson = $endMemJson - $startMemJson;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // End MemcachedJson
@@ -73,28 +70,28 @@ $durationMemJson = $endMemJson - $startMemJson;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Starting MemcachedRaw
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-$memcachedRaw  = new \Processus\Memcached\Client();
-$memcachedRaw->setPort("11711")
-             ->initClient();
+$memcachedRaw = new \Processus\Ruhebett\Memcached\Client();
+$memcachedRaw->setHost("192.168.42.18");
+$memcachedRaw->setPort("11211")
+    ->initClient();
 
 $startMemRaw = microtime(true);
-for($i = 0; $i <= $totalIteration; $i++)
-{
+for ($i = 0; $i <= $totalIteration; $i++) {
     $key = "memraw:" . $i;
     $memcachedRaw->insert($key, $rawData, 0);
     $memcachedRaw->fetch($key);
 }
-$endMemRaw = microtime(true);
+$endMemRaw      = microtime(true);
 $durationMemRaw = $endMemRaw - $startMemRaw;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // End MemcachedRaw
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-$endTotalTime = microtime(true);
+$endTotalTime  = microtime(true);
 $durationTotal = $endTotalTime - $startTotalTime;
 echo "====================================================" . PHP_EOL;
-echo "CouchbaseSdk:     " . $durationCouchSdk  . "      //  " . $durationCouchSdk   / $totalIteration .   " item/sec.   => " . $totalIteration . PHP_EOL;
-echo "Memcached Raw:    " . $durationMemRaw    . "      //  " . $durationMemRaw     / $totalIteration   .   " item/sec. => " . $totalIteration . PHP_EOL;
-echo "Memcached Json:   " . $durationMemJson   . "      //  " . $durationMemJson    / $totalIteration  .   " item/sec.  => " . $totalIteration . PHP_EOL;
+echo "CouchbaseSdk:     " . $durationCouchSdk . "      //  " . $durationCouchSdk / $totalIteration . " item/sec.   => " . $totalIteration . PHP_EOL;
+echo "Memcached Raw:    " . $durationMemRaw . "      //  " . $durationMemRaw / $totalIteration . " item/sec. => " . $totalIteration . PHP_EOL;
+echo "Memcached Json:   " . $durationMemJson . "      //  " . $durationMemJson / $totalIteration . " item/sec.  => " . $totalIteration . PHP_EOL;
 echo "====================================================" . PHP_EOL;
 echo "Total Duration:   " . $durationTotal . PHP_EOL;

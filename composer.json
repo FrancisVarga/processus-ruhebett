@@ -5,8 +5,8 @@
     "keywords":["library", "couchbase", "memcached", "nosql"],
     "homepage":"http://github.com/Crowdpark/processus-ruhebett",
     "license":"MIT",
-    "support": {
-        "issues": "https://github.com/Crowdpark/processus-ruhebett/issues"
+    "support":{
+        "issues":"https://github.com/Crowdpark/processus-ruhebett/issues"
     },
     "authors":[
         {
@@ -18,8 +18,7 @@
     ],
     "autoload":{
         "psr-0":{
-            "Processus":"src",
-            "classmap" : ["src"]
+            "Processus\\":"src"
         }
     },
     "require":{

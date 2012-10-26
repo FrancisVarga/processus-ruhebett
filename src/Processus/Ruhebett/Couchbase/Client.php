@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 namespace Processus\Ruhebett\Couchbase;
-class Client extends \Processus\Memcached\ClientJson
+class Client extends \Processus\Ruhebett\Memcached\ClientJson
 {
     /**
      * @var string
@@ -21,10 +21,6 @@ class Client extends \Processus\Memcached\ClientJson
      * @var string
      */
     private $bucket = "default";
-    /**
-     * @var \Couchbase
-     */
-    private $couchbaseClient;
 
     /**
      * @param string $user
@@ -65,11 +61,11 @@ class Client extends \Processus\Memcached\ClientJson
     }
 
     /**
-     * @return Client|\Processus\Interfaces\NoSQLInterface|\Processus\Memcached\Client
+     * @return Client|\Processus\Ruhebett\Memcached\Client
      */
     public function initClient()
     {
-        $this->couchbaseClient = new \Couchbase($this->getHost() . ":" . $this->getPort(),
+        $this->client = new \Couchbase($this->getHost() . ":" . $this->getPort(),
             $this->getUsername(), $this->getPassword(), $this->getBucket());
 
         return $this;
@@ -92,53 +88,5 @@ class Client extends \Processus\Memcached\ClientJson
     public function getBucket()
     {
         return $this->bucket;
-    }
-
-    /**
-     * @param string $key
-     * @return mixed
-     */
-    public function fetch($key)
-    {
-        return json_decode($this->couchbaseClient->get($key), true);
-    }
-
-    /**
-     * @param string $key
-     * @param array $value
-     * @param int $expired
-     * @return bool|mixed
-     * @throws \Exception
-     */
-    public function insert($key, $value, $expired = 1)
-    {
-        if (is_array($value) || is_string($value)) {
-            return $this->couchbaseClient->set($key, json_encode($value), $expired);
-        } else {
-            throw new \Exception("Can't json_encode value!");
-        }
-    }
-
-    /**
-     * @param array $keys
-     *
-     * @return mixed
-     */
-    public function getMultipleByKey(array $keys)
-    {
-        $stupidPHP = null;
-
-        return json_decode($this->couchbaseClient->getMulti($keys, $stupidPHP, \Memcached::GET_PRESERVE_ORDER), true);
-    }
-
-    /**
-     * @param string $key
-     * @param array $value
-     * @param int $expired
-     * @return mixed|void
-     */
-    public function update($key, array $value, $expired = 1)
-    {
-        return $this->insert($key, $value, $expired);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace Processus\Ruhebett\Memcached;
-class Client implements \Processus\Interfaces\NoSQLInterface
+class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 {
     /**
      * @var
@@ -16,7 +16,7 @@ class Client implements \Processus\Interfaces\NoSQLInterface
     /**
      * @var \Memcached
      */
-    protected $_memcachedClient;
+    protected $client;
 
     /**
      * @return array
@@ -27,8 +27,8 @@ class Client implements \Processus\Interfaces\NoSQLInterface
     }
 
     /**
-     * @param  $host
-     * @return mixed
+     * @param $host
+     * @return Client
      */
     public function setHost($host)
     {
@@ -42,7 +42,7 @@ class Client implements \Processus\Interfaces\NoSQLInterface
      */
     public function getMemDCli()
     {
-        return $this->_memcachedClient;
+        return $this->client;
     }
 
     /**
@@ -94,11 +94,11 @@ class Client implements \Processus\Interfaces\NoSQLInterface
     }
 
     /**
-     * @return \Processus\Interfaces\NoSQLInterface|Client
+     * @return Client
      */
     public function initClient()
     {
-        $this->_memcachedClient = new \Memcached();
+        $this->client = new \Memcached();
         $this->getMemDCli()->addServer($this->getHost(), $this->getPort());
 
         $this->setOption(\Memcached::OPT_COMPRESSION, FALSE);
