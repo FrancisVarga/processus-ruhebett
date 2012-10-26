@@ -100,10 +100,10 @@ interface NoSQLInterface
 
 ###Examples
 
-[couchbasesdk](processus-ruhebett/examples/couchbaseSdk.php)  
-[memcachedRaw](processus-ruhebett/examples/memcachedRaw.php)  
-[memcachedJson](processus-ruhebett/examples/memcachedJson.php)  
-[benchmark](processus-ruhebett/examples/benchmark.php)  
+[couchbasesdk](https://github.com/Crowdpark/processus-ruhebett/blob/master/processus-ruhebett/examples/couchbaseSdk.php)  
+[memcachedRaw](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedRaw.php)  
+[memcachedJson](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/memcachedJson.php)  
+[benchmark](https://github.com/Crowdpark/processus-ruhebett/blob/master/examples/benchmark.php)  
 
 ###License
 
