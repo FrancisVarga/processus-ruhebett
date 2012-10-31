@@ -6,7 +6,7 @@
  * Time: 4:10 PM
  * To change this template use File | Settings | File Templates.
  */
-namespace Processus\Utils;
+namespace Processus\Ruhebett\Utils;
 class CouchbaseUtil
 {
     /** @var string */
