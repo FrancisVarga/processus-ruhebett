@@ -19,7 +19,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     protected $client;
 
     /**
-     * @var \Processus\Utils\CouchbaseUtil
+     * @var \Processus\Ruhebett\Utils\CouchbaseUtil
      */
     protected $cbUtil;
 
@@ -218,12 +218,12 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     }
 
     /**
-     * @return \Processus\Utils\CouchbaseUtil
+     * @return \Processus\Ruhebett\Utils\CouchbaseUtil
      */
     public function getCbUtil()
     {
         if (!$this->cbUtil) {
-            $this->cbUtil = new \Processus\Utils\CouchbaseUtil();
+            $this->cbUtil = new \Processus\Ruhebett\Utils\CouchbaseUtil();
             $this->cbUtil->setHostName($this->getHost());
         }
 
