@@ -19,6 +19,11 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     protected $client;
 
     /**
+     * @var \Processus\Utils\CouchbaseUtil
+     */
+    protected $cbUtil;
+
+    /**
      * @return array
      */
     public function getStats()
@@ -44,6 +49,10 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
      */
     public function increment($key, $offset = 1)
     {
+        if ($this->getMemDCli()->get($key) == null) {
+            $this->getMemDCli()->set($key, 1, 0);
+        }
+
         return $this->getMemDCli()->increment($key, $offset);
     }
 
@@ -191,6 +200,32 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     public function getPort()
     {
         return $this->port;
+    }
+
+    /**
+     * @param $bucket
+     * @param $view
+     * @param $params
+     * @return mixed
+     */
+    public function getView($bucket, $view, $params)
+    {
+        return $this->getCbUtil()->setBucketName($bucket)
+            ->setView($view)
+            ->fetchView($params);
+    }
+
+    /**
+     * @return \Processus\Utils\CouchbaseUtil
+     */
+    public function getCbUtil()
+    {
+        if (!$this->cbUtil) {
+            $this->cbUtil = new \Processus\Utils\CouchbaseUtil();
+            $this->cbUtil->setHostName($this->getHost());
+        }
+
+        return $this->cbUtil;
     }
 }
 

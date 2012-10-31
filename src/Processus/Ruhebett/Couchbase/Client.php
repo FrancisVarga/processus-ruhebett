@@ -89,4 +89,15 @@ class Client extends \Processus\Ruhebett\Memcached\ClientJson
     {
         return $this->bucket;
     }
+
+    /**
+     * @param $design
+     * @param $view
+     * @param array $params
+     * @return mixed
+     */
+    public function getView($design, $view, array $params = null)
+    {
+        return json_decode($this->getMemDCli()->view($design, $view, $params), true);
+    }
 }
