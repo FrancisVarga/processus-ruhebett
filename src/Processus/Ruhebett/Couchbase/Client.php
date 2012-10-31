@@ -98,6 +98,6 @@ class Client extends \Processus\Ruhebett\Memcached\ClientJson
      */
     public function getView($design, $view, array $params = null)
     {
-        return json_decode($this->getMemDCli()->view($design, $view, $params), true);
+        return $this->getMemDCli()->view($design, $view, $params);
     }
 }
