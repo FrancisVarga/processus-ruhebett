@@ -204,13 +204,15 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * @param $bucket
+     * @param $design
      * @param $view
      * @param $params
      * @return mixed
      */
-    public function getView($bucket, $view, $params)
+    public function getViewByWorkaround($bucket, $design, $view, $params)
     {
         return $this->getCbUtil()->setBucketName($bucket)
+            ->setDesign($design)
             ->setView($view)
             ->fetchView($params);
     }
