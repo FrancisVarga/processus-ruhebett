@@ -100,4 +100,13 @@ class Client extends \Processus\Ruhebett\Memcached\ClientJson
     {
         return $this->getMemDCli()->view($design, $view, $params);
     }
+
+    /**
+     * @return Client
+     */
+    public function foo()
+    {
+        return $this;
+    }
+
 }

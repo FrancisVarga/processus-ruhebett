@@ -26,6 +26,7 @@ $cb->setBucket("default")                           // set bucket
     ->initClient()                                  // initialise the client (mandatory)
     ->insert($key, $data, $expired);                // storing data into the client 0 = never expired
 
+
 $data = $cb->fetch($key);                           // fetching key
 var_dump($data);
 
