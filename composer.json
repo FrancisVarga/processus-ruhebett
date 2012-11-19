@@ -5,6 +5,7 @@
     "keywords":["library", "couchbase", "memcached", "nosql"],
     "homepage":"http://github.com/Crowdpark/processus-ruhebett",
     "license":"MIT",
+    "minimum-stability":"dev",
     "support":{
         "issues":"https://github.com/Crowdpark/processus-ruhebett/issues"
     },
