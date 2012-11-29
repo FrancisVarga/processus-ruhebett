@@ -1,7 +1,10 @@
 <?php
 
 namespace Processus\Ruhebett\Memcached;
-class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
+
+use Processus\Ruhebett\Interfaces\NoSQLInterface;
+
+class Client implements NoSQLInterface
 {
     /**
      * @var
@@ -33,6 +36,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * @param $host
+     *
      * @return Client
      */
     public function setHost($host)
@@ -43,8 +47,9 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     }
 
     /**
-     * @param $key
+     * @param     $key
      * @param int $offset
+     *
      * @return int
      */
     public function increment($key, $offset = 1)
@@ -57,8 +62,9 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     }
 
     /**
-     * @param $key
+     * @param     $key
      * @param int $offset
+     *
      * @return int
      */
     public function decrement($key, $offset = 1)
@@ -76,6 +82,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * @param  $key
+     *
      * @return mixed
      */
     public function fetch($key)
@@ -85,6 +92,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * @param array $list
+     *
      * @return mixed
      */
     public function fetchAll(array $list)
@@ -94,8 +102,9 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * @param string $key
-     * @param array $value
-     * @param int $expired
+     * @param array  $value
+     * @param int    $expired
+     *
      * @return bool|mixed
      */
     public function insert($key, $value, $expired = 1)
@@ -105,6 +114,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * Flush the whole database
+     *
      * @return mixed
      */
     public function flushAll()
@@ -114,7 +124,9 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * Delete a value
+     *
      * @param string $key
+     *
      * @return mixed
      */
     public function delete($key)
@@ -128,13 +140,23 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     public function initClient()
     {
         $this->client = new \Memcached();
-        $this->getMemDCli()->addServer($this->getHost(), $this->getPort());
 
-        $this->setOption(\Memcached::OPT_COMPRESSION, FALSE);
+        $this->setOption(\Memcached::OPT_COMPRESSION, false);
         $this->setOption(\Memcached::OPT_CONNECT_TIMEOUT, 500);
-        $this->setOption(\Memcached::OPT_TCP_NODELAY, TRUE);
-        $this->setOption(\Memcached::OPT_NO_BLOCK, TRUE);
+        $this->setOption(\Memcached::OPT_TCP_NODELAY, true);
+        $this->setOption(\Memcached::OPT_NO_BLOCK, true);
         $this->setOption(\Memcached::OPT_POLL_TIMEOUT, 500);
+
+        $clusterInfo = json_decode(file_get_contents("http://" . $this->getHost() . ":8091/pools/default"), true);
+        $nodesInfo   = $clusterInfo['nodes'];
+
+        $couchbaseUri = array();
+
+        foreach ($nodesInfo as $node) {
+            $splitted       = explode(":", $node['hostname']);
+            $couchbaseUri[] = $splitted[0];
+            $this->getMemDCli()->addServer($splitted[0], $this->getPort());
+        }
 
         return $this;
     }
@@ -142,7 +164,8 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     /**
      * @param string $host
      * @param string $port
-     * @param int $weight
+     * @param int    $weight
+     *
      * @return Client
      */
     public function addServer($host = "127.0.0.1", $port = "11211", $weight = 0)
@@ -154,6 +177,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * @param $port
+     *
      * @return mixed|Client
      */
     public function setPort($port)
@@ -165,8 +189,9 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
 
     /**
      * @param string $key
-     * @param array $value
-     * @param int $expired
+     * @param array  $value
+     * @param int    $expired
+     *
      * @return mixed|void
      */
     public function update($key, array $value, $expired = 1)
@@ -177,6 +202,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
     /**
      * @param $key
      * @param $value
+     *
      * @return mixed
      */
     public function setOption($key, $value)
@@ -207,6 +233,7 @@ class Client implements \Processus\Ruhebett\Interfaces\NoSQLInterface
      * @param $design
      * @param $view
      * @param $params
+     *
      * @return mixed
      */
     public function getViewByWorkaround($bucket, $design, $view, $params)
