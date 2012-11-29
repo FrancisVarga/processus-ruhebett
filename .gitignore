@@ -15,3 +15,4 @@ nbproject/project.properties
 nbproject/project.xml
 vendor
 nbproject
+*.DS_Store*
