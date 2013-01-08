@@ -150,11 +150,8 @@ class Client implements NoSQLInterface
         $clusterInfo = json_decode(file_get_contents("http://" . $this->getHost() . ":8091/pools/default"), true);
         $nodesInfo   = $clusterInfo['nodes'];
 
-        $couchbaseUri = array();
-
         foreach ($nodesInfo as $node) {
             $splitted       = explode(":", $node['hostname']);
-            $couchbaseUri[] = $splitted[0];
             $this->getMemDCli()->addServer($splitted[0], $this->getPort());
         }
 

@@ -37,7 +37,7 @@ class ClientJson extends Client
     {
         $stupidPHP = null;
 
-        return json_decode(parent::getMulti($keys, $stupidPHP, \Memcached::GET_PRESERVE_ORDER), true);
+        return json_decode($this->getMemDCli()->getMulti($keys, $stupidPHP, \Memcached::GET_PRESERVE_ORDER), true);
     }
 
     /**
