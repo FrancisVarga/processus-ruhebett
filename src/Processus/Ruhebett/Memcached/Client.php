@@ -147,14 +147,6 @@ class Client implements NoSQLInterface
         $this->setOption(\Memcached::OPT_NO_BLOCK, true);
         $this->setOption(\Memcached::OPT_POLL_TIMEOUT, 500);
 
-        $clusterInfo = json_decode(file_get_contents("http://" . $this->getHost() . ":8091/pools/default"), true);
-        $nodesInfo   = $clusterInfo['nodes'];
-
-        foreach ($nodesInfo as $node) {
-            $splitted       = explode(":", $node['hostname']);
-            $this->getMemDCli()->addServer($splitted[0], $this->getPort());
-        }
-
         return $this;
     }
 
